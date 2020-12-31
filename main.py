@@ -21,23 +21,23 @@ def main():
     </div>
     """
     st.markdown(html_temp, unsafe_allow_html=True)
-    variance = st.text_input('Variance', 'Enter the Value')
-    skewness = st.text_input('Skewness', 'Enter the Value')
-    curtosis = st.text_input('Curtosis', 'Enter the Value')
-    entropy  = st.text_input('Entropy',  'Enter the Value')
+    variance = st.number_input('Variance',min_value=-7,max_value=7,value=1,step=1)
+    skewness = st.number_input('Skewness',min_value=-7,max_value=7,value=1,step=1)
+    curtosis = st.number_input('Curtosis',min_value=-7,max_value=7,value=1,step=1)
+    entropy  = st.number_input('Entropy',min_value=-7,max_value=7,value=1,step=1)
     result = st.empty()
     if st.button('Predict'):
         result = predict_value(variance,skewness,curtosis,entropy)
         if result == 0:
             st.success(f'The Prediction is {result}')
             st.balloons()
-            st.text('*0 is Real bank note')
-            st.text('*1 is Fake note')
+            st.markdown('*_0 is Real bank note_*')
+            st.markdown('*_1 is Fake note_*')
             st.stop()
         else:
             st.error(f'The Prediction is {result}')
-            st.text('*0 is Real bank note')
-            st.text('*1 is Fake note')
+            st.markdown('*_0 is Real bank note_*')
+            st.markdown('*_1 is Fake note_*')
             st.stop()
 
 
